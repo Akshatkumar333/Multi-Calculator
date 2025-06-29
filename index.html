@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi Calculator - Percentage, GST, Profit/Loss</title>
+    <title>Multi Calculator - Percentage, GST, Profit/Loss, Currency</title>
     
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-2776727085751679/8008568054"></script>
@@ -138,6 +138,191 @@
             align-items: start;
         }
 
+        /* Currency Converter Button */
+        .currency-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .currency-btn:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .dark .currency-btn {
+            background: rgba(30,30,30,0.9);
+            color: white;
+        }
+
+        .dark .currency-btn:hover {
+            background: rgba(50,50,50,0.9);
+        }
+
+        /* Currency Converter Modal */
+        .currency-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .currency-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .currency-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .dark .currency-container {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .dark .close-btn {
+            color: #aaa;
+        }
+
+        .currency-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .currency-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .currency-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .currency-input-group {
+            margin-bottom: 20px;
+        }
+
+        .currency-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .dark .currency-input-group label {
+            color: white;
+        }
+
+        .currency-input-group input,
+        .currency-input-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .dark .currency-input-group input,
+        .dark .currency-input-group select {
+            background: #34495e;
+            border-color: #2c3e50;
+            color: white;
+        }
+
+        .currency-input-group input:focus,
+        .currency-input-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .swap-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .swap-btn:hover {
+            background: #5a6fd1;
+            transform: rotate(180deg);
+        }
+
+        .currency-result {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .dark .currency-result {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        }
+
+        .currency-result-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .currency-rate {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
         /* Ad Container Styles */
         .ad-container {
             margin: 25px auto;
@@ -211,6 +396,10 @@
                 gap: 20px;
             }
             
+            .currency-grid {
+                grid-template-columns: 1fr;
+            }
+            
             .header h1 {
                 font-size: 2rem;
             }
@@ -242,6 +431,10 @@
             color: #333;
         }
 
+        .dark .input-group label {
+            color: white;
+        }
+
         .input-group input {
             width: 100%;
             padding: 12px 16px;
@@ -249,6 +442,12 @@
             border-radius: 10px;
             font-size: 1rem;
             transition: all 0.3s ease;
+        }
+
+        .dark .input-group input {
+            background: #34495e;
+            border-color: #2c3e50;
+            color: white;
         }
 
         .input-group input:focus {
@@ -263,6 +462,10 @@
             padding: 30px;
             border-radius: 15px;
             text-align: center;
+        }
+
+        .dark .result-panel {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
         }
 
         .result-title {
@@ -302,15 +505,28 @@
             border-left: 4px solid #667eea;
         }
 
+        .dark .formula-box {
+            background: #34495e;
+            border-left-color: #764ba2;
+        }
+
         .formula-box h4 {
             color: #333;
             margin-bottom: 8px;
+        }
+
+        .dark .formula-box h4 {
+            color: white;
         }
 
         .formula-box p {
             color: #666;
             font-size: 0.9rem;
             margin-bottom: 5px;
+        }
+
+        .dark .formula-box p {
+            color: #aaa;
         }
 
         .multiple-results {
@@ -362,6 +578,11 @@
 <body>
     <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
     
+    <!-- Currency Converter Button -->
+    <button class="currency-btn" onclick="toggleCurrencyModal()">
+        💱 Currency Converter
+    </button>
+    
     <div class="container">
         <!-- Top Ad -->
         <div class="ad-container">
@@ -379,7 +600,7 @@
         
         <div class="header">
             <h1>🧮 Multi Calculator</h1>
-            <p>Calculate percentages, GST, and profit/loss quickly and accurately</p>
+            <p>Calculate percentages, GST, profit/loss, and convert currencies</p>
         </div>
 
         <div class="calculator-tabs">
@@ -581,6 +802,70 @@
         </div>
     </div>
 
+    <!-- Currency Converter Modal -->
+    <div class="currency-modal" id="currencyModal">
+        <div class="currency-container">
+            <button class="close-btn" onclick="toggleCurrencyModal()">×</button>
+            <div class="currency-header">
+                <h2>💱 Currency Converter</h2>
+                <p>Convert between different currencies using real-time exchange rates</p>
+            </div>
+            
+            <div class="currency-grid">
+                <div class="currency-input-group">
+                    <label>Amount</label>
+                    <input type="number" id="currency-amount" placeholder="Enter amount" oninput="convertCurrency()">
+                </div>
+                <div class="currency-input-group">
+                    <label>From Currency</label>
+                    <select id="from-currency" onchange="convertCurrency()">
+                        <option value="USD">US Dollar (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="GBP">British Pound (GBP)</option>
+                        <option value="JPY">Japanese Yen (JPY)</option>
+                        <option value="INR" selected>Indian Rupee (INR)</option>
+                        <option value="AUD">Australian Dollar (AUD)</option>
+                        <option value="CAD">Canadian Dollar (CAD)</option>
+                        <option value="CNY">Chinese Yuan (CNY)</option>
+                    </select>
+                </div>
+                
+                <div class="currency-input-group">
+                    <label>To Currency</label>
+                    <select id="to-currency" onchange="convertCurrency()">
+                        <option value="USD" selected>US Dollar (USD)</option>
+                        <option value="EUR">Euro (EUR)</option>
+                        <option value="GBP">British Pound (GBP)</option>
+                        <option value="JPY">Japanese Yen (JPY)</option>
+                        <option value="INR">Indian Rupee (INR)</option>
+                        <option value="AUD">Australian Dollar (AUD)</option>
+                        <option value="CAD">Canadian Dollar (CAD)</option>
+                        <option value="CNY">Chinese Yuan (CNY)</option>
+                    </select>
+                </div>
+                
+                <div class="currency-input-group">
+                    <label>Result</label>
+                    <input type="text" id="currency-result" placeholder="Result will appear here" readonly>
+                </div>
+            </div>
+            
+            <button class="swap-btn" onclick="swapCurrencies()">
+                🔄
+            </button>
+            
+            <div class="currency-result">
+                <div id="conversion-result">Enter amount to convert</div>
+                <div class="currency-result-value" id="conversion-amount">-</div>
+                <div class="currency-rate" id="conversion-rate">Exchange rate: -</div>
+            </div>
+            
+            <button class="copy-btn" style="margin-top: 20px; width: 100%;" onclick="copyCurrencyResult()">
+                📋 Copy Conversion Result
+            </button>
+        </div>
+    </div>
+
     <!-- Cookie Consent Banner -->
     <div class="cookie-consent" id="cookieConsent">
         <p>We use cookies to personalize content and ads. By using our site, you consent to our use of cookies.</p>
@@ -648,6 +933,70 @@
         function loadAds() {
             if (localStorage.getItem('cookiesAccepted') === 'true') {
                 document.querySelectorAll('.ad-container').forEach(ad => ad.style.display = 'flex');
+            }
+        }
+
+        // Currency Converter Functions
+        const currencyModal = document.getElementById('currencyModal');
+        const exchangeRates = {
+            USD: 1,
+            EUR: 0.85,
+            GBP: 0.73,
+            JPY: 110.15,
+            INR: 74.85,
+            AUD: 1.35,
+            CAD: 1.26,
+            CNY: 6.45
+        };
+
+        function toggleCurrencyModal() {
+            currencyModal.classList.toggle('active');
+        }
+
+        function convertCurrency() {
+            const amount = parseFloat(document.getElementById('currency-amount').value) || 0;
+            const fromCurrency = document.getElementById('from-currency').value;
+            const toCurrency = document.getElementById('to-currency').value;
+            
+            if (amount && fromCurrency && toCurrency) {
+                // Convert to USD first, then to target currency
+                const amountInUSD = amount / exchangeRates[fromCurrency];
+                const convertedAmount = amountInUSD * exchangeRates[toCurrency];
+                
+                document.getElementById('currency-result').value = convertedAmount.toFixed(4);
+                document.getElementById('conversion-amount').textContent = convertedAmount.toFixed(4) + ' ' + toCurrency;
+                document.getElementById('conversion-result').textContent = amount + ' ' + fromCurrency + ' =';
+                
+                // Calculate exchange rate
+                const rate = exchangeRates[toCurrency] / exchangeRates[fromCurrency];
+                document.getElementById('conversion-rate').textContent = 'Exchange rate: 1 ' + fromCurrency + ' = ' + rate.toFixed(6) + ' ' + toCurrency;
+            } else {
+                document.getElementById('currency-result').value = '';
+                document.getElementById('conversion-amount').textContent = '-';
+                document.getElementById('conversion-result').textContent = 'Enter amount to convert';
+                document.getElementById('conversion-rate').textContent = 'Exchange rate: -';
+            }
+        }
+
+        function swapCurrencies() {
+            const fromCurrency = document.getElementById('from-currency');
+            const toCurrency = document.getElementById('to-currency');
+            const temp = fromCurrency.value;
+            
+            fromCurrency.value = toCurrency.value;
+            toCurrency.value = temp;
+            convertCurrency();
+        }
+
+        function copyCurrencyResult() {
+            const result = document.getElementById('conversion-result').textContent + ' ' + 
+                          document.getElementById('conversion-amount').textContent + ' (' + 
+                          document.getElementById('conversion-rate').textContent + ')';
+            
+            if (result && !result.includes('-')) {
+                navigator.clipboard.writeText(result).then(() => {
+                    showToast('Currency conversion copied to clipboard!');
+                });
             }
         }
 
