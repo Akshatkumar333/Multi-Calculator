@@ -138,6 +138,33 @@
             align-items: start;
         }
 
+        /* Other Project Link */
+        .other-project-box {
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .dark .other-project-box {
+            background: rgba(0,0,0,0.2);
+        }
+
+        .other-project-link {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .dark .other-project-link {
+            color: white;
+        }
+
         /* Currency Converter Button */
         .currency-btn {
             position: fixed;
@@ -601,6 +628,18 @@
         <div class="header">
             <h1>🧮 Multi Calculator</h1>
             <p>Calculate percentages, GST, profit/loss, and convert currencies</p>
+        </div>
+
+        <!-- Other Project Link -->
+        <div class="other-project-box">
+            <a href="https://akshatkumar333.github.io/Billionaire-Watch/" target="_blank" class="other-project-link">
+                <span style="font-size: 1.2rem;">💰</span>
+                <div>
+                    <div style="font-weight: bold; font-size: 1.1rem;">Try my other website</div>
+                    <div style="font-size: 0.9rem; opacity: 0.9;">Billionaire Wealth Tracker</div>
+                </div>
+                <span style="font-size: 1.2rem;">→</span>
+            </a>
         </div>
 
         <div class="calculator-tabs">
